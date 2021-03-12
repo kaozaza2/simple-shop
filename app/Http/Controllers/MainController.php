@@ -13,7 +13,7 @@ class MainController extends Controller
         // TODO: empty constructor
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $products = Product::all();
         return view('index')->with('products', $products);
