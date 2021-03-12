@@ -23,7 +23,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'image' => 'blank.jpg',
+            'image' => 'blank.png',
             'price' => rand(10, 90),
         ];
     }

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <table class="table">
-    <tr>
+<div class="container py-2">
+  <table class="table table-striped">
+    <tr class="table-dark text-center">
       <th>รูป</th>
       <th>ชื่อสินค้า</th>
       <th>จำนวน</th>
@@ -11,7 +11,7 @@
     </tr>
     @foreach ($items as $item)
     <tr>
-      <td><img class="img-fluid img-thumbnail" style="width: 50px;" src="/images/{{ $item->product->image }}"></td>
+      <td class="text-center"><img class="img-fluid img-thumbnail" style="width: 50px;" src="/images/{{ $item->product->image }}"></td>
       <td>{{ $item->product->name }}</td>
       <td class="text-end">{{ $item->amount }}</td>
       <td class="text-end">฿ {{ $item->product->price }}</td>
