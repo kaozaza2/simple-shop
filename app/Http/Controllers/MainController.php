@@ -29,20 +29,16 @@ class MainController extends Controller
     {
         $amount = $request->input('amount');
         $product = Product::find($request->input('product'));
-        $cart = $request->session()->pull('cart');
-        if ($cart == null) {
-            $cart = [];
-        }
-        $found = false;
-        foreach ($cart as &$cartItem) {
-            if ($cartItem->product->id == $product->id) {
-                $cartItem->amount += $amount;
-                $found = true;
-                break;
-            }
-        }
-        if (!$found) {
-           $cart[] = Cart::addNew($product, $amount);
+        $cart = collect($request->session()->pull('cart'));
+        if ($cart->contains('product.id', $product->id)) {
+            $cart->transform(function ($item) use ($product, $amount) {
+                if ($item->product->id == $product->id) {
+                    $item->amount += $amount;
+                }
+                return $item;
+            });
+        } else {
+            $cart->push(Cart::addNew($product, $amount));
         }
         $request->session()->put('cart', $cart);
         $request->session()->put('message', "$amount ชิ้น ถูกเพิ่มลงตะกร้า");
@@ -51,11 +47,10 @@ class MainController extends Controller
 
     public function cart(Request $request)
     {
-        $items = $request->session()->get('cart', []);
-        $total = 0;
-        foreach ($items as $item) {
-            $total += $item->product->price * $item->amount;
-        }
+        $items = collect($request->session()->get('cart'));
+        $total = $items->sum(function ($item) {
+            return $item->product->price * $item->amount;
+        });
         return view('cart')->with('items', $items)->with('total', $total);
     }
 }
