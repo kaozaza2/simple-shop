@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
   @if (request()->session()->has('message'))
-  <div class="alert alert-success mt-2" role="alert">
+  <div class="alert alert-success mt-3" role="alert">
     {{ request()->session()->pull('message') }}
   </div>
   @endif
-  <div class="row pt-2">
+  <div class="row mt-2">
     @foreach ($products as $product)
     <div class="col-6 col-md-3 mb-2">
       <div class="card">
