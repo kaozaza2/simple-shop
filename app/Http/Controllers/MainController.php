@@ -41,7 +41,7 @@ class MainController extends Controller
             $cart->push(Cart::addNew($product, $amount));
         }
         $request->session()->put('cart', $cart);
-        $request->session()->put('message', "$amount ชิ้น ถูกเพิ่มลงตะกร้า");
+        $request->session()->put('message', "{$product->name} $amount ชิ้น ถูกเพิ่มลงตะกร้า");
         return redirect()->route('index');
     }
 
