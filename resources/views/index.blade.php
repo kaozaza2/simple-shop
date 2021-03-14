@@ -11,7 +11,7 @@
     @foreach ($products as $product)
     <div class="col-6 col-md-3 mb-2">
       <div class="card">
-        <img src="/images/{{ $product->image }}" class="card-img-top">
+        <img src="/storage/images/{{ $product->image }}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title single-line">{{ $product->name }}</h5>
           <p class="text-danger">฿ {{ $product->price }}</p>

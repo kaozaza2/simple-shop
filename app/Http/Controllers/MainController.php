@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+
 class MainController extends Controller
 {
     public function __construct()
@@ -43,6 +44,23 @@ class MainController extends Controller
         $request->session()->put('cart', $cart);
         $request->session()->put('message', "{$product->name} $amount ชิ้น ถูกเพิ่มลงตะกร้า");
         return redirect()->route('index');
+    }
+
+    public function updateCart(Request $request): JsonResponse
+    {
+        $cart = collect($request->session()->get('cart'));
+        if ($cart->contains('product.id', $request->product)) {
+            foreach ($cart as $key => $val) {
+                if ($val->product->id == $request->product) {
+                    $val->amount = $request->amount;
+                    $cart->put($key, $val);
+                }
+            }
+            return response()->json([$val, $cart->sum(function ($item) {
+                return $item->product->price * $item->amount;
+            })]);
+        }
+        return response()->json([], 400);
     }
 
     public function cart(Request $request)

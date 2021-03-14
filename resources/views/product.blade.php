@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 p-3 text-center">
-      <img class="img-fluid img-thumbnail mb-2" src="/images/{{ $product->image }}">
+      <img class="img-fluid img-thumbnail mb-2" src="/storage/images/{{ $product->image }}">
       <h2>{{ $product->name }}</h2>
       <form method="post" action="{{ route('addcart') }}">
         <input type="hidden" name="product" value="{{ $product->id }}">
