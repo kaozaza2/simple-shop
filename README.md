@@ -6,6 +6,7 @@ Simple-Shop พัฒนาโดยใช้ Lumen framework.
 
 ความต้องการระบบ
 * PHP >= 7.3
+    * `sqlite` extension.
 * Composer
     * วิธีติดตั้ง composer ได้ที่นี่ [https://getcomposer.org](https://getcomposer.org)
 
