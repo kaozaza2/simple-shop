@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    public static function addNew($product, $amount)
+    public static function createItem($product, $amount)
     {
         $cart = new Cart();
         $cart->product = $product;
