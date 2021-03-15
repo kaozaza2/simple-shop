@@ -17,5 +17,5 @@ $router->get('/', ['as' => 'index', 'uses' => 'MainController@index']);
 $router->get('/product/{productId}', ['as' => 'product', 'uses' => 'MainController@product']);
 $router->post('/addcart', ['as' => 'addcart', 'uses' => 'MainController@addcart']);
 $router->get('/cart', ['as' => 'cart', 'uses' => 'MainController@cart']);
-$router->get('/checkout', ['as' => 'checkout', 'uses' => 'MainController@checkout']);
+$router->post('/checkout', ['as' => 'checkout', 'uses' => 'MainController@checkout']);
 $router->post('/updateCart', ['as' => 'updateCart', 'uses' => 'MainController@updateCart']);

@@ -37,7 +37,7 @@
       <td class="text-center" colspan="4">ยังไม่มีสินค้าในตะกร้า</td>
     </tr>
   </table>
-  <a id="product-checkout" href="{{ route('checkout') }}" class="btn btn-success float-end @if ($items->isEmpty()) d-none @endif">ชำระเงิน</a>
+  <button type="button" id="product-checkout" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success float-end @if ($items->isEmpty()) d-none @endif">ชำระเงิน</button>
 </div>
 <script>
   function warnUpdate(id, amount) {
@@ -79,4 +79,46 @@
     request.send(data);
   }
 </script>
+@endsection
+
+@section('otherSection')
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ข้อมูลจัดส่ง</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('checkout') }}" method="post">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="fullname" class="form-label">ชื่อเต็ม</label>
+            <input type="text" name="fullname" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">ที่อยู่</label>
+            <textarea class="form-control" name="address" rows="2"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="tel" class="form-label">เบอร์โทร</label>
+            <input type="tel" name="tel" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="pay-method-control" class="form-label">วิธีชำระเงิน</label>
+            <div id="pay-method-control" class="form-check">
+              <input class="form-check-input" type="radio" name="payMethod" checked>
+              <label class="form-check-label" for="radio">
+                Cash on delivery
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary">จัดส่ง</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection

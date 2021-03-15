@@ -80,18 +80,12 @@ class MainController extends Controller
         return view('cart')->with('items', $items)->with('total', $total);
     }
 
-    private function array_deep_search($value, $key, $array) {
-        $skey = explode('.', $key);
-        $count = empty($key) ? 0 : count($skey);
-        foreach ($array as $inkey => $invalue) {
-            $subvalue = $invalue;
-            for ($i = 0; $i < $count; $i++) {
-                $subvalue = $subvalue[$skey[$i]];
-            }
-            if ($subvalue == $value) {
-                return $inkey;
-            }
-        }
-        return false;
+    public function checkout(Request $request)
+    {
+        // do something
+        $request->session()->remove('cart');
+        $request->session()->put('message', 'ขอบคุณสำหรับการสั่งซื้อ, รอรับของได้เลย');
+        return redirect()->route('index');
     }
+
 }

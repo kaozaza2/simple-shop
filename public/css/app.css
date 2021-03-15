@@ -1,3 +1,6 @@
+* {
+    font-family: 'Sarabun', sans-serif;
+}
 .single-line {
   white-space: nowrap;
   text-overflow: ellipsis;
