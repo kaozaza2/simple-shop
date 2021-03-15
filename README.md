@@ -13,7 +13,9 @@ Simple-Shop พัฒนาโดยใช้ Lumen framework.
 ```
 git clone https://github.com/kaozaza2/simple-shop.git
 cd simple-shop
-composer install --no-dev
+composer install
+php artisan migrate --seed
+composer update --no-dev
 ```
 
 Local serve
