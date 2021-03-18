@@ -1,4 +1,4 @@
-# Simple-Shop
+# Simple-Shop 1.0
 
 Simple-Shop พัฒนาโดยใช้ Lumen framework.
 
